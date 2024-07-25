@@ -1,11 +1,108 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta name='viewport' content='width=device-width, initial-scale=1.0'>
 		<meta charset='utf-8'>
-		<title>index</title>
+		<title>Mi Índice</title>
+		<style>
+			body {
+				font-family: sans, sans-serif;
+			}
+			span {
+				width: auto;
+				margin: auto;
+				display: block;
+		
+				font-size: 10vw;
+				text-align: center;
+
+			}
+			nav {
+				width: fit-content;
+				height: fit-content;
+				margin: auto;
+				padding: 0;
+			
+				display: flex;
+				flex-direction: column;
+				align-content: center;
+
+				font-size: 2rem;
+			}
+			nav * {
+				text-align: center;
+				text-decoration: none;
+				color: unset;
+			
+				transition: transform 0.1s ease;
+			}
+		</style>	
 	</head>
 	<body>
-		<a href='./docs/megusta/index.html'>megusta</a>
-		<a href='./docs/eventOnClick/index.html'>on click</a>
+		<div class='container'>
+			<span>Índice</span>
+			<nav>
+				<a href='./docs/megusta/index.html'>Red-social JS Ejercicio 'Me gusta'</a>
+				<a href='./docs/eventoOnClick/index.html'>Petlopedia JS Ejercicio 'On Click'</a>
+				<a href=''>&ltelemento lista&gt</a>
+				<a href=''>&ltelemento lista&gt</a>
+			</nav>
+		</div>
 	</body>	
+	<script>
+		var nav_elements = document.querySelectorAll('a');
+		var mouse_switch = false;
+
+		//Efecto aumento de tamaño al pasar el mouse por sobre cada elemento de la lista
+		nav_elements.forEach(function (e) {
+				 e.addEventListener('mouseover', function handler() {
+					mouse_switch = true;
+					let nextElement = this.nextElementSibling;
+					let prevElement = this.previousElementSibling;
+
+					this.style.transform = "scale(1.5,1.5)";
+					this.style.color = "lightblue";
+					
+					if (nextElement && mouse_switch) {
+						nextElement.style.transform = "scale(1.25,1.25)";
+						if (nextElement.nextElementSibling) {
+							nextElement.nextElementSibling.style.transform = "scale(1.1,1.1)";
+						}
+					}
+					if (prevElement && mouse_switch) {
+						prevElement.style.transform = "scale(1.25,1.25)";
+						if (prevElement.previousElementSibling) {
+                                                        prevElement.previousElementSibling.style.transform = "scale(1.1,1.1)";
+                                                }
+
+					}
+				})
+				 e.addEventListener('mouseleave', function handler() {
+					mouse_switch = false;
+					let nextElement = this.nextElementSibling;
+					let prevElement = this.previousElementSibling;
+					
+					this.style.transform = "scale(1,1)";
+					this.style.color = "unset";
+				
+					if (nextElement) {
+						nextElement.style.transform = "scale(1,1)";
+						if (nextElement.nextElementSibling) {
+							nextElement.nextElementSibling.style.transform = "scale(1,1)";
+						}
+					}
+					if (prevElement) {
+						prevElement.style.transform = "scale(1,1)";
+						if (prevElement.previousElementSibling) {
+							prevElement.previousElementSibling.style.transform = "scale(1,1)";
+						}
+					}
+
+					
+				})
+				
+			}
+			//provimo EventListener agregar efecto cambio de color. Que disminuya la gamma del color desde el seleccionado hacia el resto.
+		);
+	</script>
 </html>
