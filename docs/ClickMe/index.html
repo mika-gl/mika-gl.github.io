@@ -38,12 +38,32 @@
 				color: #bcf5bc;
 				text-decoration: underline;
 			}
+			.start_div {
+				position: fixed;
+				height: 100vh;
+				width: 100vw;
+				background-color: grey;
+				color: green;
+				opacity: 0.6;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				z-index: 2;
+				font-size: 5rem;
+			}
+			#play {
+				cursor: pointer;
+			}
 		</style>
 	</head>
 	<body>
-		<img src='https://i.pinimg.com/736x/4a/20/4c/4a204c27b5eeb2ffea1eee1a515bf791.jpg'>
-
-		<!-- don't cheat -->
+		<img src='joker.jpg'>
+		<audio src='eerie.wav'></audio>
+		<div class='start_div'>
+			<p id='play'>start.</p>
+		</div>
+		
+		<!-- pumpkin eater -->
 		<span class='no'>Click Me</span>	
 		<span id='run'>Click Me</span>	
 	</body>
@@ -67,6 +87,7 @@
 
 		var no_span = document.querySelectorAll('.no');		
 		var the_span = document.getElementById('run');	
+		var audio = document.querySelector('audio');
 		var count = 0;
 		the_span.addEventListener('mouseover',function handler() {
 			count++;
@@ -76,10 +97,16 @@
 			if (count <= 5) {
 				this.style.top = `${a}%`, this.style.left = `${b}%`;
 			} else {
+				audio.pause();
+				audio.src = "TaDa.mp3";
+				audio.currentTime = 0;
+				audio.volume = 0.7;
+				audio.play();
+
 				this.removeEventListener('mouseover', handler);
 				this.style.width = 'auto';
 				this.style.margin = 'auto';
-				document.querySelector('img').src = 'https://i.pinimg.com/736x/cb/3e/01/cb3e014d6122af3b43933bb571859ae7.jpg';
+				document.querySelector('img').src = 'yea.jpg';
 				this.innerHTML = "<a href='https://en.wikipedia.org/wiki/Self-fulfillment'>You made it!</a>";
 			}  
 		});
@@ -89,6 +116,15 @@
 				this.innerText = "No";
 				this.style.color = "red";
 			});
+		});
+			
+		document.getElementById('play').addEventListener('click', function audioHandler() {
+			audio.volume = 0.1;
+			audio.play();
+			this.parentElement.remove();
+			this.remove();
+			removeEventListener('click',audioHandler);
+
 		});
 	</script>
 </html>
