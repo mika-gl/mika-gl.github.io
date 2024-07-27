@@ -66,65 +66,65 @@
 		<!-- pumpkin eater -->
 		<span class='no'>Click Me</span>	
 		<span id='run'>Click Me</span>	
-	</body>
-	<script>
-		var amount = Math.random()*10 + 20;
+		<script>
+			var amount = Math.random()*10 + 20;
 
-		for (let i=0; i<amount; i++) {
-			let child = document.createElement('span');
-			child.innerText="Click Me";
-			child.classList.add('no');
-			document.querySelector('body').appendChild(child);
-		}
-		var span_all = document.querySelectorAll('span');
+			for (let i=0; i<amount; i++) {
+				let child = document.createElement('span');
+				child.innerText="Click Me";
+				child.classList.add('no');
+				document.querySelector('body').appendChild(child);
+			}
+			var span_all = document.querySelectorAll('span');
 
-		span_all.forEach((element) => {
-			let a = Math.random()*95, b = Math.random()*95;
-			element.style.top = `${a}vh`, element.style.left = `${b}vw`;
-		});
-
-
-
-		var no_span = document.querySelectorAll('.no');		
-		var the_span = document.getElementById('run');	
-		var audio = document.querySelector('audio');
-		var count = 0;
-		the_span.addEventListener('mouseover',function handler() {
-			count++;
-			let a = Math.floor(Math.random()*100), b = Math.floor(Math.random()*100);
-			console.log(`${a} y ${b}`);
-
-			if (count <= 5) {
-				this.style.top = `${a}%`, this.style.left = `${b}%`;
-			} else {
-				audio.pause();
-				audio.src = "TaDa.mp3";
-				audio.currentTime = 0;
-				audio.volume = 0.7;
-				audio.play();
-
-				this.removeEventListener('mouseover', handler);
-				this.style.width = 'auto';
-				this.style.margin = 'auto';
-				document.querySelector('img').src = 'yea.jpg';
-				this.innerHTML = "<a href='https://en.wikipedia.org/wiki/Self-fulfillment'>You made it!</a>";
-			}  
-		});
-
-		no_span.forEach((element) => {
-			element.addEventListener('mouseover', function handler() {
-				this.innerText = "No";
-				this.style.color = "red";
+			span_all.forEach((element) => {
+				let a = Math.random()*95, b = Math.random()*95;
+				element.style.top = `${a}vh`, element.style.left = `${b}vw`;
 			});
-		});
-			
-		document.getElementById('play').addEventListener('click', function audioHandler() {
-			audio.volume = 0.1;
-			audio.play();
-			this.parentElement.remove();
-			this.remove();
-			removeEventListener('click',audioHandler);
 
-		});
-	</script>
+
+
+			var no_span = document.querySelectorAll('.no');		
+			var the_span = document.getElementById('run');	
+			var audio = document.querySelector('audio');
+			var count = 0;
+			the_span.addEventListener('mouseover',function handler() {
+				count++;
+				let a = Math.floor(Math.random()*100), b = Math.floor(Math.random()*100);
+				console.log(`${a} y ${b}`);
+
+				if (count <= 5) {
+					this.style.top = `${a}%`, this.style.left = `${b}%`;
+				} else {
+					audio.pause();
+					audio.src = "TaDa.mp3";
+					audio.currentTime = 0;
+					audio.volume = 0.7;
+					audio.play();
+
+					this.removeEventListener('mouseover', handler);
+					this.style.width = 'auto';
+					this.style.margin = 'auto';
+					document.querySelector('img').src = 'yea.jpg';
+					this.innerHTML = "<a href='https://en.wikipedia.org/wiki/Self-fulfillment'>You made it!</a>";
+				}  
+			});
+
+			no_span.forEach((element) => {
+				element.addEventListener('mouseover', function handler() {
+					this.innerText = "No";
+					this.style.color = "red";
+				});
+			});
+				
+			document.getElementById('play').addEventListener('click', function audioHandler() {
+				audio.volume = 0.1;
+				audio.play();
+				this.parentElement.remove();
+				this.remove();
+				removeEventListener('click',audioHandler);
+
+			});
+		</script>
+	</body>
 </html>
